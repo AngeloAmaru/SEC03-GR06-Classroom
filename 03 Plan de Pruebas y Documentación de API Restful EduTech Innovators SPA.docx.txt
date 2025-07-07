@@ -1,0 +1,504 @@
+﻿Plan de Pruebas y Documentación de API Restful
+	
+
+	
+
+	
+
+	
+
+	
+
+Plan de Pruebas y Documentación de API Restful
+
+
+Sistema de Gestión de Clases EduTech Innovators SPA
+Asignatura DSY1103 – Full Stack 1
+Profesor: Cristián Gómez Vega / Fecha de entrega 28/06/2025
+  
+
+
+
+
+
+Nombre del alumno
+	Correo del alumno
+	Nombre y Apellidos Integrante 1
+	Correo Integrante 1  
+	Nombre y Apellidos Integrante 2
+	Correo Integrante 2  
+	Nombre y Apellidos Integrante 3  
+	Correo Integrante 3  
+	
+
+________________
+
+
+Instrucciones para la redacción de este informe
+En el informe aparecerá en cada sección el OBJETIVO y CONSIDERACIONES, explicando su utilidad y enfoque, pero se debe ELIMINAR TODAS LAS EXPLICACIONES, RESÚMENES Y EJEMPLOS PROPORCIONADOS EN COLOR AZUL DESPUES DE LEERLAS, dejando solo los títulos para luego desarrollar el contenido específico de esa sección en el proyecto.
+En cada ítem deberá comenzar a escribir donde dice “[Inserta aquí el texto de tu proyecto]”, usando la siguiente letra en estilo “Normal” para los párrafos:
+Calibri, Tamaño 11, Color negro, En párrafo: el espaciado anterior es 0 pto, el posterior es 10 pto, e interlineado sencillo.
+Los títulos y subtítulos de cada apartado están definidos como estilos de MS Word, de forma que su numeración consecutiva se genera automáticamente según se trate de estilos: “Titulo1, Titulo2 y Titulo3”.
+La “Tabla de Contenido” se genera tomando como criterio los títulos del documento. Una vez terminada su redacción debe hacer clic en la Tabla de Contenidos y seleccionar “Actualizar tabla…” para que refleje los títulos definitivos y sus números de página.
+ Interfaz de usuario gráfica
+
+El contenido generado por IA puede ser incorrecto. 
+
+Donde quiera que deba llenarlo en el documento, se debe recordar que el nombre de su cliente es “EduTech Innovators SPA”, el nombre del proveedor de software es quién implementa el proyecto y “Usted debe inventar un nombre para su empresa”, por último el proyecto se llama “Sistema de Gestión de Clases EduTech Innovators”. Por simplicidad considere los siguientes usuarios (ROLES) para su sistema:
+1. Administrador: Andrés Silva González, asilva@edutechinnovators.cl
+2. Coordinador: Gabriela Vargas Herrera, gvargas@edutechinnovators.cl
+3. Instructor: Iván Morales Mujica, imorales@edutechinnovators.cl
+4. Soporte: Santiago Herrera, sherrera@edutechinnovators.cl
+5. Alumno: Carlos Ramírez Vargas, cramirez@gmail.cl
+ESTA PAGINA QUE USTED ESTA LEYENDO EN AZUL, LA DEBE ELIMINAR DE SU INFORME FINAL, YA QUE SÓLO CONTEMPLA INSTRUCCIONES SOBRE CÓMO REALIZAR CORRECTAMENTE LA ELABORACIÓN DEL DOCUMENTO DE DISEÑO DE SOFTWARE Y NO FORMA PARTE DEL PROPIO DOCUMENTO.
+Contenido
+1.        Introducción
+2.        Documentación Técnica del Sistema
+2.1.        Descripción técnica de cada microservicio
+2.2.        Diagrama de arquitectura de microservicios
+3.        Selección e Implementación Tecnológica
+3.1.        Herramientas y frameworks para pruebas unitarias
+3.2.        Framework para documentación OAS (Swagger)
+3.3.        Framework HATEOAS aplicado en controladores
+4.        Desarrollo de Pruebas Unitarias
+4.1.        Pruebas y evidencias en la entidad Course
+4.2.        Pruebas y evidencias en la entidad CourseCategory
+4.3.        Pruebas y evidencias en la entidad CourseContent
+4.4.        Pruebas y evidencias en la entidad CourseComment
+4.5.        Pruebas y evidencias en la entidad Enrollment
+5.        Documentación de Microservicios
+5.1.        Implementación de OpenAPI Specification
+5.2.        Capturas de Swagger UI y/o especificación YAML/JSON
+5.3.        Navegabilidad HATEOAS en ms-courses
+5.4.        Ejemplos de respuestas con hipermedios
+6.        Despliegue en la Nube
+6.1.        Elección del proveedor
+6.2.        Configuración del entorno de despliegue
+6.3.        Enlace al sistema en producción
+6.4.        Monitoreo y logging
+7.        Conclusiones
+7.1.        Síntesis de aprendizajes
+7.2.        Evaluación crítica del proceso
+7.3.        Proyecciones y recomendaciones
+
+
+________________
+
+
+Historial de Versiones
+Fecha
+	Versión
+	Autor
+	Organización
+	Descripción
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+Información del Proyecto
+Empresa / Organización
+	[** Nombre ficticio de su empresa, que es la que fabrica el software **]
+	Proyecto
+	Sistema de Gestión de Clases EduTech Innovators
+	Fecha de preparación
+	sábado 17 de mayo de 2025
+	Cliente
+	EduTech Innovators SPA
+	Patrocinador principal
+	EduTech Innovators SPA
+	Gerente / Líder de Proyecto
+	[** Nombre de uno de los integrantes de su equipo que será el líder de proyecto **]
+	Gerente / Líder de Análisis de negocio y requisitos
+	CEO de EduTech Innovators SPA, Sr. Cristián Gómez Vega
+	
+
+Aprobaciones
+Nombre y Apellido
+	Cargo
+	Departamento u Organización
+	Fecha
+	Firma
+	Cristián Gómez Vega
+	CEO
+	Directorio
+	05/04/2025
+	  
+
+	[** Líder de su proyecto **]
+	[** Cargo **]
+	Oficina de proyectos
+	05/04/2025
+	[** Firma **]
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+1. Introducción
+Se debe redactar una introducción que contextualice el trabajo realizado en el informe. La introducción debe contener los siguientes elementos:
+* Propósito del informe. Explicar que el informe documenta el desarrollo de pruebas unitarias, documentación técnica y navegabilidad de una API basada en microservicios desarrollada con Spring Boot.
+* Contexto del desarrollo. Indicar que el proyecto corresponde a un microservicio llamado ms-courses, parte de una arquitectura de servicios distribuida orientada al dominio educativo.
+* Alcance del informe. Describir brevemente que el informe incluye:
+   * La selección y uso de frameworks de pruebas unitarias.
+   * El desarrollo de pruebas sobre controladores y servicios.
+   * La documentación con OpenAPI/Swagger.
+   * La implementación de HATEOAS para mejorar la navegabilidad de la API.
+* Importancia de lo desarrollado. Señalar que el uso de pruebas automatizadas y documentación estándar fortalece la calidad, mantenibilidad y escalabilidad de los microservicios.
+________________
+
+
+2. Documentación Técnica del Sistema
+   1. Descripción técnica de cada microservicio
+En este apartado se debe redactar una descripción técnica de cada microservicio desarrollado como parte de la solución. La descripción debe incluir:
+Tabla de microservicios:
+Módulo
+
+
+	Carpeta
+	Entities
+	Port
+	Artifact Id
+	Description
+	Package name
+	Eureka
+	C:\classroom\eureka\
+	No tiene
+	8761
+	com-edutech-eureka
+	Netflix Eureka: Descubrimiento dinámico de microservicios, registro y búsqueda de servicios.
+	com.edutech.eureka
+	Common
+	C:\classroom\common\
+	 DTO y Exceptions
+	no aplica
+	com-edutech-common
+	Contiene DTOs reutilizables y excepciones globales para el proyecto Classroom.
+	com.edutech.common
+	Users
+	C:\classroom\ms-users\
+	Role, User
+	9001
+	com-edutech-users
+	Microservicio de Usuarios: Gestión de cuentas de usuario, autenticación y perfiles.
+	com.edutech.users
+	Courses
+	C:\classroom\ms-courses\
+	Course, CourseCategory, CourseContent, CourseComment, Enrollment
+	9002
+	com-edutech-courses
+	Microservicio de Cursos: Administración de información de cursos e inscripciones de estudiantes.
+	com.edutech.courses
+	Grades
+	C:\classroom\ms-grades\
+	Quiz, CourseQuiz, CourseQuizQuestion, QuizResponse, StudentMark
+	9003
+	com-edutech-grades
+	Microservicio de Calificaciones: Gestiona el registro y la consulta de notas de los estudiantes.
+	com.edutech.grades
+	Payments
+	C:\classroom\ms-payments\
+	DiscountCoupon, Payment
+	9005
+	com-edutech-payments
+	Microservicio de Pagos: Responsable del procesamiento de transacciones, pagos de matrícula y facturación.
+	com.edutech.payments
+	Support
+	C:\classroom\ms-support\
+	SupportTicket
+	9004
+	com-edutech-support
+	Microservicio de Soporte: Gestión de tickets de soporte y atención de consultas de usuarios.
+	com.edutech.support
+	
+
+Explicar cómo se comunican los microservicios entre ellos usando Feign Clients.
+________________
+
+
+   2. Diagrama de arquitectura de microservicios
+Explicar en detalle la arquitectura:
+  
+
+Explicar cada una de las componentes de la arquitectura y cómo interactúa entre ellas:
+1. Cliente Web
+2. Cliente Móvil
+3. Protocolo HTTP
+4. Protocolo REST
+5. Gateway/API Gateway
+6. Eureka
+7. Servicios REST (Microservicios)
+* ms-users
+* ms-courses
+* ms-grades
+* ms-payments
+* ms-support
+8. Servicio en la nube (Icono de engranaje en la nube)
+9. Bases de datos individuales por servicio
+
+
+________________
+
+
+3. Selección e Implementación Tecnológica
+   1. Herramientas y frameworks para pruebas unitarias
+Este apartado del informe corresponde a la justificación de las herramientas y frameworks seleccionados para implementar pruebas unitarias en los microservicios del backend. Se enfoca solo en la elección, no en la implementación aún.
+Se debe responder con claridad:
+1. Herramientas elegidas para hacer pruebas unitarias.  Se debe explicar herramientas como:
+
+
+* JUnit 5 → Framework principal de pruebas unitarias en Java.
+* Mockito → Framework de mocks para simular dependencias.
+* AssertJ o Hamcrest → Librerías para realizar aserciones avanzadas.
+* Spring Boot Test → Soporte de Spring para pruebas con contexto.
+
+
+2. Por se eligió cada herramienta. Debe justificar con argumentos técnicos:
+
+
+* Compatibilidad con Spring Boot.
+* Comunidad activa y documentación.
+* Integración con Maven o Gradle.
+* Buenas prácticas en pruebas modernas de microservicios.
+
+
+3. Qué rol cumple cada herramienta. Por ejemplo:
+
+
+* JUnit: estructura básica de pruebas (anotaciones como @Test, @BeforeEach, etc.)
+* Mockito: permite crear objetos simulados (mock) para aislar el componente a testear.
+* Spring Boot Test: permite probar componentes con inyección real de dependencias (@WebMvcTest, @DataJpaTest).
+
+
+4. Tipos de pruebas cubiertas con las herramientas seleccionadas. Se puede señalar:
+
+
+* Pruebas de lógica de negocio (servicios).
+* Pruebas de acceso a datos (repositorios).
+* Pruebas de controladores (sin levantar el servidor completo).
+________________
+
+
+   2. Framework para documentación OAS (Swagger)
+Se debe responder de forma clara:
+1. Qué es OAS y para qué sirve. Se debe explicar que:
+
+
+* OAS (OpenAPI Specification) es un estándar abierto para describir APIs REST.
+* Permite generar una documentación legible, navegable e interactiva que describe todos los endpoints, métodos, parámetros, respuestas, códigos HTTP, etc.
+
+
+2. Qué framework usó para generar la documentación OAS. Se debe indicar explícitamente los frameworks elegidos, por ejemplo:
+
+
+* springdoc-openapi-ui (recomendado en proyectos modernos con Spring Boot 2.6+)
+* springfox-swagger2 (más antiguo, menos recomendado en versiones recientes)
+
+
+3. Por qué se eligieron los framework
+Debe justificar con argumentos:
+* Soporte oficial para Spring Boot.
+* Generación automática de swagger-ui.html.
+* Facilidad de uso.
+* Actualizaciones frecuentes y comunidad activa (especialmente en el caso de springdoc-openapi).
+
+
+4. Qué ventajas aporta al proyecto
+Debe justificar con argumentos:
+* Facilita el trabajo a desarrolladores externos y testers.
+* Mejora la mantenibilidad de la API.
+* Permite validar la estructura de los endpoints.
+* Genera una documentación siempre sincronizada con el código fuente.
+________________
+
+
+   3. Framework HATEOAS aplicado en controladores
+Esta sección documenta y explica cómo implementaste HATEOAS (Hypermedia As The Engine Of Application State) en tu API:
+* El uso de enlaces hipermediales en las respuestas de tus endpoints (ej: self, update, delete, enroll).
+* La estructura enriquecida del JSON retornado con org.springframework.hateoas.EntityModel o CollectionModel.
+* Cómo ayuda a la navegabilidad dinámica del cliente.
+* Ejemplo de código del controlador (uso de linkTo(), methodOn()).
+* Ejemplo de salida JSON con _links.
+El objetivo es demostrar que tu API es descubrible y navegable por sí sola, sin necesidad de documentación externa. Esto es parte del diseño de la respuesta de la API.
+Ejemplo JSON con HATEOAS:
+{
+  "id": 1,
+  "title": "Curso de Full Stack con Backend Spring Boot",
+  "_links": {
+    "self": { "href": "/api/courses/1" },
+    "update": { "href": "/api/courses/1" },
+    "delete": { "href": "/api/courses/1" }
+  }
+}
+
+
+________________
+
+
+4. Desarrollo de Pruebas Unitarias
+Hay que explicar que en este apartado se documenta el desarrollo de pruebas unitarias para los controladores y servicios de las entidades del microservicio ms-courses, utilizando JUnit 5, Mockito, y Spring Boot Test, excluyendo pruebas a los repositorios JPA directamente.
+Hay que explicar que se debe implementar pruebas para los siguientes componentes de cada entidad:
+* Servicios (Service): pruebas unitarias con mocks para verificar lógica de negocio.
+* Controladores (Controller): pruebas HTTP con MockMvc, simulando requests y validando respuestas.
+Hay que explicar que las herramientas utilizadas son:
+* JUnit 5: para definir y ejecutar las pruebas.
+* Mockito: para simular repositorios y dependencias.
+* @WebMvcTest: para pruebas de controladores.
+* @MockBean y @InjectMocks: para aislar capas.
+Hay que explicar que se probarán las siguientes funcionalidades por entidad
+* Obtener todos los registros de la entidad
+* Buscar un registro por ID de la entidad
+* Crear nuevo registro de la entidad
+* Actualizar un registro de la entidad
+* Eliminar un registro de la entidad
+________________
+
+
+   4. Pruebas y evidencias en la entidad Course
+Realizar las pruebas y explicar los resultados de cada una de ellas, mostrando los tickets en verde que se visualizan en pantalla luego de ejecutar exitosamente las pruebas unitarias. Las pruebas deben realizarse para los servicios y controladores asociados a las siguientes funcionalidades:
+* Obtener todos los cursos: GET /api/courses
+* Buscar un curso por ID: GET /api/courses/{courseId}
+* Crear un nuevo curso: POST /api/courses
+* Actualizar un curso existente: PUT /api/courses/{courseId}
+* Eliminar un curso: DELETE /api/courses/{courseId}
+   1. Pruebas y evidencias en la entidad CourseCategory
+Realizar las pruebas y explicar los resultados de cada una de ellas, mostrando los tickets en verde que se visualizan en pantalla luego de ejecutar exitosamente las pruebas unitarias. Las pruebas deben realizarse para los servicios y controladores asociados a las siguientes funcionalidades:
+* Obtener todas las categorías de cursos: GET /api/courses/{courseId}/categories
+* Buscar una categoría por ID: GET /api/course-categories/{categoryId}
+* Crear una nueva categoría en un curso: POST /api/courses/{courseId}/categories
+* Actualizar una categoría: PUT /api/course-categories/{categoryId}
+* Eliminar una categoría: DELETE /api/course-categories/{categoryId}
+   1. Pruebas y evidencias en la entidad CourseContent
+Realizar las pruebas y explicar los resultados de cada una de ellas, mostrando los tickets en verde que se visualizan en pantalla luego de ejecutar exitosamente las pruebas unitarias. Las pruebas deben realizarse para los servicios y controladores asociados a las siguientes funcionalidades:
+* Obtener todos los contenidos de un curso: GET /api/courses/{courseId}/contents
+* Obtener un contenido por ID único: GET /api/course-contents/{contentId}
+* Crear un nuevo contenido en un curso: POST /api/courses/{courseId}/contents
+* Actualizar un contenido existente: PUT /api/course-contents/{contentId}
+* Eliminar un contenido: DELETE /api/course-contents/{contentId}
+________________
+
+
+   2. Pruebas y evidencias en la entidad CourseComment
+Realizar las pruebas y explicar los resultados de cada una de ellas, mostrando los tickets en verde que se visualizan en pantalla luego de ejecutar exitosamente las pruebas unitarias. Las pruebas deben realizarse para los servicios y controladores asociados a las siguientes funcionalidades:
+* Obtener todos los comentarios de un curso: GET /api/courses/{courseId}/comments
+* Obtener un comentario por ID único: GET /api/course-comments/{commentId}
+* Crear un nuevo comentario en un curso: POST /api/courses/{courseId}/comments
+* Actualizar un comentario existente: PUT /api/course-comments/{commentId}
+* Eliminar un comentario: DELETE /api/course-comments/{commentId}
+   1. Pruebas y evidencias en la entidad Enrollment
+Realizar las pruebas y explicar los resultados de cada una de ellas, mostrando los tickets en verde que se visualizan en pantalla luego de ejecutar exitosamente las pruebas unitarias. Las pruebas deben realizarse para los servicios y controladores asociados a las siguientes funcionalidades:
+* Obtener todas las inscripciones de un curso: GET /api/courses/{courseId}/enrollments
+* Obtener una inscripción por ID único: GET /api/enrollments/{enrollmentId}
+* Crear una nueva inscripción en un curso: POST /api/courses/{courseId}/enrollments
+* Actualizar una inscripción existente: PUT /api/enrollments/{enrollmentId}
+* Eliminar una inscripción: DELETE /api/enrollments/{enrollmentId}
+________________
+
+
+5. Documentación de Microservicios
+En esta sección del informe, el estudiante debe demostrar que su API está correctamente documentada, tanto de forma técnica (usando OpenAPI/Swagger), como funcional (mediante hipermedios HATEOAS en los controladores del microservicio ms-courses).
+   2. Implementación de OpenAPI Specification
+Se debe explicar cómo implementó la documentación automática de los endpoints usando el estándar OpenAPI Specification (OAS). Esto incluye:
+* ¿Qué dependencia usó? (por ejemplo: springdoc-openapi-starter-webmvc-ui)
+* ¿Qué configuración aplicó en el proyecto?
+* ¿Qué beneficios aporta esta documentación para desarrolladores y testers?
+* ¿Cómo asegura que la documentación se mantenga sincronizada con el código fuente?
+Además, debe mostrar cómo se usaron anotaciones como @Operation, @Parameter, @Schema, etc., para enriquecer la documentación.
+   3. Capturas de Swagger UI y/o especificación YAML/JSON
+Se debe mostrar evidencia visual o técnica de que la especificación fue generada correctamente:
+* Captura de pantalla de http://localhost:8080/swagger-ui.html mostrando los endpoints documentados.
+* Exportación (si es posible) del archivo .yaml o .json generado con la especificación OpenAPI.
+* Destacar que Swagger permite probar los endpoints directamente desde el navegador.
+Este punto permite verificar que la API es autoexplorable y conforme a estándares internacionales.
+   4. Navegabilidad HATEOAS en ms-courses
+Se debe demostrar que el microservicio ms-courses incluye soporte HATEOAS (Hypermedia As The Engine Of Application State). Esto significa que:
+* Las respuestas JSON contienen enlaces (_links) que permiten navegar entre recursos.
+* Se usó la clase EntityModel<>, CollectionModel<> o RepresentationModel de Spring HATEOAS.
+* Se aplicó en los controladores de entidades como Course, CourseContent, Enrollment, etc.
+También debe indicar qué beneficios aporta HATEOAS en términos de descubribilidad y navegación dinámica de la API.
+________________
+
+
+   5. Ejemplos de respuestas con hipermedios
+El alumno debe incluir uno o más ejemplos de respuestas JSON reales o simuladas que muestren claramente el uso de hipervínculos embebidos en la respuesta. Por ejemplo:
+{
+    "id": 12,
+    "title": "Curso de Spring Boot",
+    "_links": {
+        "self": { "href": "/api/courses/12" },
+        "delete": { "href": "/api/courses/12" },
+        "contents": { "href": "/api/courses/12/contents" }
+    }
+}
+Se debe explicar qué representa cada enlace, cómo se construyó (usando linkTo() y methodOn()), y cómo se mejora la experiencia del consumidor de la API.
+6. Despliegue en la Nube
+   1. Elección del proveedor
+Se debe investigar qué plataformas en la nube ofrecen soporte sólido para aplicaciones Java/Spring Boot. Esto incluye evaluar factores como: escalabilidad, facilidad de integración con bases de datos, costos, disponibilidad de herramientas DevOps, documentación y comunidad. También es clave analizar si la plataforma permite automatización (CI/CD), balanceo de carga, gestión de contenedores y soporte para microservicios.
+   2. Configuración del entorno de despliegue
+Aquí es necesario estudiar cómo se configura un entorno productivo que soporte una aplicación Spring Boot. Esto incluye investigar sobre:
+* Variables de entorno y perfiles de configuración (application-prod.yml o .properties)
+* Servidores de aplicaciones o servicios como Docker, Kubernetes o instancias virtuales
+* Configuración de base de datos externa (conexiones seguras, rendimiento, backups)
+* Certificados SSL, configuración de puertos y firewalls
+* Integración con herramientas de CI/CD (por ejemplo, GitHub Actions, Jenkins, GitLab CI)
+________________
+
+
+   3. Enlace al sistema en producción
+Se debe conocer cómo se realiza la publicación del sistema en un dominio accesible. Esto implica:
+* Configuración de DNS o subdominios personalizados
+* Asociar el dominio al servicio desplegado
+* Uso de HTTPS con certificados SSL (Let's Encrypt, servicios integrados)
+* Pruebas de accesibilidad y rendimiento inicial desde diferentes dispositivos o ubicaciones
+   1. Monitoreo y logging
+Es fundamental investigar herramientas para supervisar la salud del sistema y registrar eventos críticos. Se recomienda analizar:
+* Frameworks o bibliotecas de logging compatibles con Spring Boot (como Logback o SLF4J)
+* Servicios de monitoreo (Prometheus, Grafana, New Relic, ELK Stack)
+* Alarmas y métricas clave (uso de CPU, memoria, errores HTTP, latencias)
+* Configuración para mantener logs centralizados, seguros y persistentes
+7. Conclusiones
+   1. Síntesis de aprendizajes
+Debe hacerse una reflexión sobre lo aprendido durante todo el proceso: desde el desarrollo con Spring Boot hasta el despliegue en la nube. Esto implica identificar qué nuevas herramientas, buenas prácticas o conocimientos se adquirieron.
+   2. Evaluación crítica del proceso
+Es necesario analizar los errores, dificultades o decisiones técnicas que influyeron en el resultado final. También se deben considerar las limitaciones encontradas en la plataforma, la estructura del código o el manejo de dependencias externas.
+   3. Proyecciones y recomendaciones
+Se debe plantear cómo podría evolucionar el sistema: mejoras técnicas, escalabilidad, automatización de procesos, integración con nuevas herramientas o servicios. Además, es útil incluir recomendaciones para otros equipos que trabajen con tecnologías similares.
+
+
+
+
+	
+
+	
+
+	Fecha plantilla: junio de 2025
+
+
+	Desarrollado por el profesor
+Cristián Gómez Vega
+www.triskeledu.com
+	Página  |
