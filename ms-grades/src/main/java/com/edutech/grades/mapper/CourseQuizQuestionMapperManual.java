@@ -18,21 +18,20 @@ public class CourseQuizQuestionMapperManual {
         if (entity == null) {
             return null;
         }
-        
-        return new CourseQuizQuestionDTO(
-            entity.getId(),
-            entity.getQuizId(),
-            entity.getQuestionText(),
-            entity.getOptionA(),
-            entity.getOptionB(),
-            entity.getOptionC(),
-            entity.getOptionD(),
-            entity.getOptionE(),
-            entity.getCorrectAnswer(),
-            entity.getCorrectOption(),
-            entity.getOrderIndex(),
-            entity.getCreatedAt()
-        );
+        CourseQuizQuestionDTO dto = new CourseQuizQuestionDTO();
+        dto.setId(entity.getId());
+        dto.setQuizId(entity.getQuizId());
+        dto.setQuestionText(entity.getQuestionText());
+        dto.setOptionA(entity.getOptionA());
+        dto.setOptionB(entity.getOptionB());
+        dto.setOptionC(entity.getOptionC());
+        dto.setOptionD(entity.getOptionD());
+        dto.setOptionE(entity.getOptionE());
+        dto.setCorrectAnswer(entity.getCorrectAnswer());
+        dto.setCorrectOption(entity.getCorrectOption());
+        dto.setOrderIndex(entity.getOrderIndex());
+        dto.setCreatedAt(entity.getCreatedAt());
+        return dto;
     }
 
     /**
@@ -42,20 +41,19 @@ public class CourseQuizQuestionMapperManual {
         if (dto == null) {
             return null;
         }
-        
-        return new CourseQuizQuestion(
-            dto.getId(),
-            dto.getQuizId(),
-            dto.getQuestionText(),
-            dto.getOptionA(),
-            dto.getOptionB(),
-            dto.getOptionC(),
-            dto.getOptionD(),
-            dto.getOptionE(),
-            dto.getCorrectAnswer(),
-            dto.getCorrectOption(),
-            dto.getOrderIndex(),
-            dto.getCreatedAt()
-        );
+        CourseQuizQuestion entity = new CourseQuizQuestion();
+        entity.setId(dto.getId());
+        entity.setQuizId(dto.getQuizId());
+        entity.setQuestionText(dto.getQuestionText());
+        entity.setOptionA(dto.getOptionA());
+        entity.setOptionB(dto.getOptionB());
+        entity.setOptionC(dto.getOptionC());
+        entity.setOptionD(dto.getOptionD());
+        entity.setOptionE(dto.getOptionE());
+        entity.setCorrectAnswer(dto.getCorrectAnswer());
+        entity.setCorrectOption(dto.getCorrectOption());
+        entity.setOrderIndex(dto.getOrderIndex());
+        entity.setCreatedAt(dto.getCreatedAt());
+        return entity;
     }
 }

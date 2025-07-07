@@ -4,6 +4,7 @@ import com.edutech.common.dto.EnrollmentDTO;
 import com.edutech.courses.client.UserClient;
 import com.edutech.courses.entity.Enrollment;
 import com.edutech.courses.mapper.EnrollmentMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import com.edutech.courses.repository.EnrollmentRepository;
 import com.edutech.courses.repository.CourseRepository;
 
@@ -22,8 +23,9 @@ public class EnrollmentService {
     private final UserClient userClient;
     private final CourseRepository courseRepository;
 
-    public EnrollmentService(EnrollmentRepository enrollmentRepository, EnrollmentMapper enrollmentMapper,
-                           UserClient userClient, CourseRepository courseRepository) {
+    public EnrollmentService(EnrollmentRepository enrollmentRepository,
+                             EnrollmentMapper enrollmentMapper,
+                             UserClient userClient, CourseRepository courseRepository) {
         this.enrollmentRepository = enrollmentRepository;
         this.enrollmentMapper = enrollmentMapper;
         this.userClient = userClient;

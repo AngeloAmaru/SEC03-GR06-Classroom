@@ -9,7 +9,7 @@ import java.time.Instant;
 /**
  * Mapper manual para conversión entre Enrollment entity y DTO
  */
-@Component("enrollmentMapperManual")
+@Component
 public class EnrollmentMapper {
     
     public EnrollmentDTO toDTO(Enrollment entity) {

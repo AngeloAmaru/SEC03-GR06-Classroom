@@ -2,7 +2,7 @@ package com.edutech.users;
 
 import com.edutech.common.dto.UserDTO;
 import com.edutech.users.entity.User;
-import com.edutech.users.mapper.UserMapper;
+import com.edutech.users.mapper.UserMapperManual;
 import com.edutech.users.repository.UserRepository;
 import com.edutech.users.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +20,7 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
     @Mock
-    private UserMapper userMapper;
+    private UserMapperManual userMapper;
     @InjectMocks
     private UserService userService;
 

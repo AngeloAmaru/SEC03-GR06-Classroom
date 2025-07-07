@@ -6,7 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.time.Instant;
 
 @Entity
-@Table(name = "user")
+@Table(name = "\"user\"")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

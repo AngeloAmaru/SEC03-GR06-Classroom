@@ -1,6 +1,6 @@
 package com.edutech.grades.mapper;
 
-import com.edutech.common.dto.QuizQuestionDTO;
+import com.edutech.common.dto.CourseQuizQuestionDTO;
 import com.edutech.grades.entity.CourseQuizQuestion;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +12,11 @@ import java.time.Instant;
 @Component("quizQuestionMapperManual")
 public class QuizQuestionMapperManual {
     
-    public QuizQuestionDTO toDTO(CourseQuizQuestion entity) {
+    public CourseQuizQuestionDTO toDTO(CourseQuizQuestion entity) {
         if (entity == null) {
             return null;
         }
-        
-        QuizQuestionDTO dto = new QuizQuestionDTO();
+        CourseQuizQuestionDTO dto = new CourseQuizQuestionDTO();
         dto.setId(entity.getId());
         dto.setQuizId(entity.getQuizId());
         dto.setQuestionText(entity.getQuestionText());
@@ -30,15 +29,13 @@ public class QuizQuestionMapperManual {
         dto.setCorrectOption(entity.getCorrectOption());
         dto.setOrderIndex(entity.getOrderIndex());
         dto.setCreatedAt(entity.getCreatedAt());
-        
         return dto;
     }
 
-    public CourseQuizQuestion toEntity(QuizQuestionDTO dto) {
+    public CourseQuizQuestion toEntity(CourseQuizQuestionDTO dto) {
         if (dto == null) {
             return null;
         }
-        
         CourseQuizQuestion entity = new CourseQuizQuestion();
         entity.setId(dto.getId());
         entity.setQuizId(dto.getQuizId());
@@ -52,7 +49,6 @@ public class QuizQuestionMapperManual {
         entity.setCorrectOption(dto.getCorrectOption());
         entity.setOrderIndex(dto.getOrderIndex());
         entity.setCreatedAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : Instant.now());
-        
         return entity;
     }
 }
