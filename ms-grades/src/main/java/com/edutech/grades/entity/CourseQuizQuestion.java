@@ -1,34 +1,66 @@
-package com.edutech.common.dto;
+package com.edutech.grades.entity;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
 
 /**
- * Data Transfer Object for CourseQuizQuestion
- * Manual POJO implementation (no Lombok)
+ * JPA Entity for CourseQuizQuestion to match the database table name course_quiz_question
+ * This provides proper entity mapping for the course_quiz_question table
  */
-public class CourseQuizQuestionDTO {
-
+@Entity
+@Table(name = "course_quiz_question")
+public class CourseQuizQuestion {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
+
+    @Column(name = "quiz_id")
     private Integer quizId;
+
+    @Column(name = "question_text", length = 800)
     private String questionText;
+
+    @Column(name = "option_a", length = 800)
     private String optionA;
+
+    @Column(name = "option_b", length = 800)
     private String optionB;
+
+    @Column(name = "option_c", length = 800)
     private String optionC;
+
+    @Column(name = "option_d", length = 800)
     private String optionD;
+
+    @Column(name = "option_e", length = 800)
     private String optionE;
+
+    @Column(name = "correct_answer", length = 800)
     private String correctAnswer;
+
+    @Column(name = "correct_option", length = 1)
     private String correctOption;
+
+    @Column(name = "order_index", nullable = false)
     private Integer orderIndex;
+
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    @Column(name = "created_at", nullable = false)
     private Instant createdAt;
-
+    
     // Default constructor
-    public CourseQuizQuestionDTO() {}
-
+    public CourseQuizQuestion() {
+    }
+    
     // Parameterized constructor
-    public CourseQuizQuestionDTO(Integer id, Integer quizId, String questionText, String optionA, 
-                                String optionB, String optionC, String optionD, String optionE, 
-                                String correctAnswer, String correctOption, Integer orderIndex, 
-                                Instant createdAt) {
+    public CourseQuizQuestion(Integer id, Integer quizId, String questionText, String optionA, 
+                             String optionB, String optionC, String optionD, String optionE, 
+                             String correctAnswer, String correctOption, Integer orderIndex, 
+                             Instant createdAt) {
         this.id = id;
         this.quizId = quizId;
         this.questionText = questionText;
@@ -138,5 +170,12 @@ public class CourseQuizQuestionDTO {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (createdAt == null) {
+            createdAt = Instant.now();
+        }
     }
 }

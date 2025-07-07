@@ -1,49 +1,49 @@
 package com.edutech.common.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.time.Instant;
 
-/**
- * Data Transfer Object for CourseQuizQuestion
- * Manual POJO implementation (no Lombok)
- */
-public class CourseQuizQuestionDTO {
+public class QuizQuestionDTO {
 
     private Integer id;
+
     private Integer quizId;
+
+    @Size(max = 800, message = "El texto de la pregunta no puede exceder los 800 caracteres.")
     private String questionText;
+
+    @Size(max = 800, message = "La opción A no puede exceder los 800 caracteres.")
     private String optionA;
+
+    @Size(max = 800, message = "La opción B no puede exceder los 800 caracteres.")
     private String optionB;
+
+    @Size(max = 800, message = "La opción C no puede exceder los 800 caracteres.")
     private String optionC;
+
+    @Size(max = 800, message = "La opción D no puede exceder los 800 caracteres.")
     private String optionD;
+
+    @Size(max = 800, message = "La opción E no puede exceder los 800 caracteres.")
     private String optionE;
+
+    @Size(max = 800, message = "La respuesta correcta no puede exceder los 800 caracteres.")
     private String correctAnswer;
+
+    @Size(max = 1, message = "La opción correcta debe ser una sola letra.")
     private String correctOption;
+
+    @NotNull(message = "El índice de orden es obligatorio.")
     private Integer orderIndex;
+
     private Instant createdAt;
 
-    // Default constructor
-    public CourseQuizQuestionDTO() {}
+    // Constructors
+    public QuizQuestionDTO() {}
 
-    // Parameterized constructor
-    public CourseQuizQuestionDTO(Integer id, Integer quizId, String questionText, String optionA, 
-                                String optionB, String optionC, String optionD, String optionE, 
-                                String correctAnswer, String correctOption, Integer orderIndex, 
-                                Instant createdAt) {
-        this.id = id;
-        this.quizId = quizId;
-        this.questionText = questionText;
-        this.optionA = optionA;
-        this.optionB = optionB;
-        this.optionC = optionC;
-        this.optionD = optionD;
-        this.optionE = optionE;
-        this.correctAnswer = correctAnswer;
-        this.correctOption = correctOption;
-        this.orderIndex = orderIndex;
-        this.createdAt = createdAt;
-    }
-
-    // Getters and setters
+    // Getters and Setters
     public Integer getId() {
         return id;
     }
