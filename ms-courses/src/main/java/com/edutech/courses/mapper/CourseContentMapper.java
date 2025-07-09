@@ -16,8 +16,9 @@ public class CourseContentMapper {
         dto.setId(entity.getId());
         dto.setCourseId(entity.getCourseId());
         dto.setTitle(entity.getTitle());
-        dto.setContent(entity.getContent());
-        dto.setOrder(entity.getOrder());
+        dto.setContentType(entity.getContentType());
+        dto.setUrl(entity.getUrl());
+        dto.setOrderIndex(entity.getOrderIndex());
         return dto;
     }
 
@@ -27,8 +28,9 @@ public class CourseContentMapper {
         entity.setId(dto.getId());
         entity.setCourseId(dto.getCourseId());
         entity.setTitle(dto.getTitle());
-        entity.setContent(dto.getContent());
-        entity.setOrder(dto.getOrder());
+        entity.setContentType(dto.getContentType());
+        entity.setUrl(dto.getUrl());
+        entity.setOrderIndex(dto.getOrderIndex());
         return entity;
     }
 }

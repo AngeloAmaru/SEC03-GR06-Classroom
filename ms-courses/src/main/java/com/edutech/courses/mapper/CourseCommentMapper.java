@@ -16,7 +16,8 @@ public class CourseCommentMapper {
         dto.setId(entity.getId());
         dto.setCourseId(entity.getCourseId());
         dto.setUserId(entity.getUserId());
-        dto.setComment(entity.getComment());
+        dto.setCommentText(entity.getCommentText());
+        dto.setRating(entity.getRating());
         dto.setCreatedAt(entity.getCreatedAt());
         return dto;
     }
@@ -27,7 +28,8 @@ public class CourseCommentMapper {
         entity.setId(dto.getId());
         entity.setCourseId(dto.getCourseId());
         entity.setUserId(dto.getUserId());
-        entity.setComment(dto.getComment());
+        entity.setCommentText(dto.getCommentText());
+        entity.setRating(dto.getRating());
         entity.setCreatedAt(dto.getCreatedAt());
         return entity;
     }

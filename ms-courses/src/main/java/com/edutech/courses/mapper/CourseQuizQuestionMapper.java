@@ -15,9 +15,16 @@ public class CourseQuizQuestionMapper {
         CourseQuizQuestionDTO dto = new CourseQuizQuestionDTO();
         dto.setId(entity.getId());
         dto.setQuizId(entity.getQuizId());
-        dto.setQuestion(entity.getQuestion());
-        dto.setType(entity.getType());
-        dto.setOrder(entity.getOrder());
+        dto.setQuestionText(entity.getQuestionText());
+        dto.setOptionA(entity.getOptionA());
+        dto.setOptionB(entity.getOptionB());
+        dto.setOptionC(entity.getOptionC());
+        dto.setOptionD(entity.getOptionD());
+        dto.setOptionE(entity.getOptionE());
+        dto.setCorrectAnswer(entity.getCorrectAnswer());
+        dto.setCorrectOption(entity.getCorrectOption());
+        dto.setOrderIndex(entity.getOrderIndex());
+        dto.setCreatedAt(entity.getCreatedAt());
         return dto;
     }
 
@@ -26,9 +33,16 @@ public class CourseQuizQuestionMapper {
         CourseQuizQuestion entity = new CourseQuizQuestion();
         entity.setId(dto.getId());
         entity.setQuizId(dto.getQuizId());
-        entity.setQuestion(dto.getQuestion());
-        entity.setType(dto.getType());
-        entity.setOrder(dto.getOrder());
+        entity.setQuestionText(dto.getQuestionText());
+        entity.setOptionA(dto.getOptionA());
+        entity.setOptionB(dto.getOptionB());
+        entity.setOptionC(dto.getOptionC());
+        entity.setOptionD(dto.getOptionD());
+        entity.setOptionE(dto.getOptionE());
+        entity.setCorrectAnswer(dto.getCorrectAnswer());
+        entity.setCorrectOption(dto.getCorrectOption());
+        entity.setOrderIndex(dto.getOrderIndex());
+        entity.setCreatedAt(dto.getCreatedAt());
         return entity;
     }
 }
