@@ -18,11 +18,15 @@ import static org.mockito.Mockito.*;
 import java.util.Arrays;
 import java.util.List;
 
+import com.edutech.payments.client.UserClient;
+
 class PaymentServiceTest {
     @Mock
     private PaymentRepository paymentRepository;
     @Mock
     private PaymentMapper paymentMapper;
+    @Mock
+    private UserClient userClient;
     @InjectMocks
     private PaymentService paymentService;
 
@@ -68,10 +72,13 @@ class PaymentServiceTest {
     void testCreate() {
         Payment payment = new Payment();
         PaymentDTO paymentDTO = new PaymentDTO();
+        paymentDTO.setUserId(1);
+        com.edutech.common.dto.UserDTO user = new com.edutech.common.dto.UserDTO();
+        user.setId(1);
+        when(userClient.findById(anyInt())).thenReturn(user);
         when(paymentMapper.toEntity(any(PaymentDTO.class))).thenReturn(payment);
         when(paymentRepository.save(any(Payment.class))).thenReturn(payment);
         when(paymentMapper.toDTO(any(Payment.class))).thenReturn(paymentDTO);
-        // Simula usuario existente si es necesario: when(userClient.findById(anyInt())).thenReturn(null);
         PaymentDTO result = paymentService.create(paymentDTO);
         assertNotNull(result);
         verify(paymentRepository).save(any(Payment.class));
@@ -81,11 +88,14 @@ class PaymentServiceTest {
     void testUpdate() {
         Payment payment = new Payment();
         PaymentDTO paymentDTO = new PaymentDTO();
+        paymentDTO.setUserId(1);
+        com.edutech.common.dto.UserDTO user = new com.edutech.common.dto.UserDTO();
+        user.setId(1);
         when(paymentRepository.findById(anyInt())).thenReturn(Optional.of(payment));
+        when(userClient.findById(anyInt())).thenReturn(user);
         when(paymentMapper.toEntity(any(PaymentDTO.class))).thenReturn(payment);
         when(paymentRepository.save(any(Payment.class))).thenReturn(payment);
         when(paymentMapper.toDTO(any(Payment.class))).thenReturn(paymentDTO);
-        // Simula usuario existente si es necesario: when(userClient.findById(anyInt())).thenReturn(null);
         PaymentDTO result = paymentService.update(1, paymentDTO);
         assertNotNull(result);
         verify(paymentRepository).save(any(Payment.class));
