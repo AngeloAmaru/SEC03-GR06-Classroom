@@ -15,6 +15,9 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 class DiscountCouponServiceTest {
     @Mock
     private DiscountCouponRepository discountCouponRepository;
@@ -48,6 +51,53 @@ class DiscountCouponServiceTest {
         assertEquals(id, result.getId());
         verify(discountCouponRepository, times(1)).findById(id);
         verify(discountCouponMapper, times(1)).toDTO(coupon);
+    }
+
+    @Test
+    void testFindAll() {
+        DiscountCoupon coupon = new DiscountCoupon();
+        coupon.setId(1);
+        DiscountCouponDTO couponDTO = new DiscountCouponDTO();
+        couponDTO.setId(1);
+        when(discountCouponRepository.findAll()).thenReturn(Arrays.asList(coupon));
+        when(discountCouponMapper.toDTO(any(DiscountCoupon.class))).thenReturn(couponDTO);
+        List<DiscountCouponDTO> result = discountCouponService.findAll();
+        assertEquals(1, result.size());
+        verify(discountCouponRepository).findAll();
+    }
+
+    @Test
+    void testCreate() {
+        DiscountCoupon coupon = new DiscountCoupon();
+        DiscountCouponDTO couponDTO = new DiscountCouponDTO();
+        when(discountCouponMapper.toEntity(any(DiscountCouponDTO.class))).thenReturn(coupon);
+        when(discountCouponRepository.save(any(DiscountCoupon.class))).thenReturn(coupon);
+        when(discountCouponMapper.toDTO(any(DiscountCoupon.class))).thenReturn(couponDTO);
+        DiscountCouponDTO result = discountCouponService.create(couponDTO);
+        assertNotNull(result);
+        verify(discountCouponRepository).save(any(DiscountCoupon.class));
+    }
+
+    @Test
+    void testUpdate() {
+        DiscountCoupon coupon = new DiscountCoupon();
+        DiscountCouponDTO couponDTO = new DiscountCouponDTO();
+        when(discountCouponRepository.findById(anyInt())).thenReturn(Optional.of(coupon));
+        when(discountCouponMapper.toEntity(any(DiscountCouponDTO.class))).thenReturn(coupon);
+        when(discountCouponRepository.save(any(DiscountCoupon.class))).thenReturn(coupon);
+        when(discountCouponMapper.toDTO(any(DiscountCoupon.class))).thenReturn(couponDTO);
+        DiscountCouponDTO result = discountCouponService.update(1, couponDTO);
+        assertNotNull(result);
+        verify(discountCouponRepository).save(any(DiscountCoupon.class));
+    }
+
+    @Test
+    void testDelete() {
+        DiscountCoupon coupon = new DiscountCoupon();
+        when(discountCouponRepository.findById(anyInt())).thenReturn(Optional.of(coupon));
+        doNothing().when(discountCouponRepository).delete(any(DiscountCoupon.class));
+        discountCouponService.delete(1);
+        verify(discountCouponRepository).delete(any(DiscountCoupon.class));
     }
 
     @Test
